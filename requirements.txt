@@ -1,0 +1,12 @@
+alooma==0.3.24
+certifi==2018.4.16
+chardet==3.0.4
+datadog==0.21.0
+decorator==4.3.0
+idna==2.6
+Jinja2==2.10
+MarkupSafe==1.0
+requests==2.18.4
+simplejson==3.15.0
+six==1.11.0
+urllib3==1.22

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python monitor.py
+exec python monitor.py

@@ -7,7 +7,7 @@ import time
 ALOOMA_USERNAME = os.environ.get('ALOOMA_USERNAME')
 ALOOMA_PASSWORD = os.environ.get('ALOOMA_PASSWORD')
 DATADOG_API_KEY = os.environ.get('DATADOG_API_KEY')
-MINUTES_SLEEP = 10
+MINUTES_SLEEP = int(os.environ.get('SLEEP_INTERVAL_MINUTES', '10'))
 SECONDS_SLEEP = MINUTES_SLEEP * 60
 
 
@@ -47,6 +47,8 @@ def send_metric(data):
         print values
 
         for v in values:
+            if v[1] is None:
+                continue
             print v
             result = datadog.api.Metric.send(
                 metric=metric_name,
@@ -57,9 +59,6 @@ def send_metric(data):
 
 
 metrics = alooma.METRICS_LIST
-metrics.remove('CPU_USAGE')
-metrics.remove('MEMORY_CONSUMED')
-metrics.remove('MEMORY_LEFT')
 
 
 def record_metric(m):
@@ -70,9 +69,11 @@ def record_metric(m):
     for r in result:
         import pprint; pprint.pprint(r)
 
+
 def record_all_metrics():
     for m in metrics:
         record_metric(m)
+
 
 def record_num_inputs():
     inputs = api.get_inputs()
@@ -84,11 +85,21 @@ def record_num_inputs():
     )
 
 
+def record_restream_stats():
+    restream_queue_size = api.get_restream_queue_size()
+    datadog.api.Metric.send(
+        metric='alooma.restreamable_events',
+        points=[(posix_timestamp(), restream_queue_size)],
+        type='gauge',
+    )
+
+
 if __name__ == '__main__':
     while True:
         try:
             record_all_metrics()
             record_num_inputs()
+            record_restream_stats()
         except Exception as e:
             print e
 
