@@ -57,9 +57,6 @@ def send_metric(data):
 
 
 metrics = alooma.METRICS_LIST
-metrics.remove('CPU_USAGE')
-metrics.remove('MEMORY_CONSUMED')
-metrics.remove('MEMORY_LEFT')
 
 
 def record_metric(m):
