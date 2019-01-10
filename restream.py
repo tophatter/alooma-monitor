@@ -12,5 +12,5 @@ if __name__ == '__main__':
         except Exception as e:
             print e
 
-        print "Sleeping for {}m".format(MINUTES_SLEEP)
+        print "Restream process sleeping for {}m".format(MINUTES_SLEEP)
         sleep(SECONDS_SLEEP)

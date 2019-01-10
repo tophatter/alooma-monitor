@@ -95,5 +95,5 @@ if __name__ == '__main__':
         except Exception as e:
             print e
 
-        print "Sleeping for {}m".format(MINUTES_SLEEP)
+        print "Monitor process sleeping for {}m".format(MINUTES_SLEEP)
         time.sleep(SECONDS_SLEEP)
