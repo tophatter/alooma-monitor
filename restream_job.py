@@ -1,4 +1,4 @@
-from api_config.py import api
+from api_config import api
 
 print "Restreaming alooma queue"
 api.start_restream()

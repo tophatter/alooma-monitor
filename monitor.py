@@ -3,7 +3,7 @@ import datadog
 import datetime
 import os
 import time
-from api_config.py import api
+from api_config import api
 
 DATADOG_API_KEY = os.environ.get('DATADOG_API_KEY')
 MINUTES_SLEEP = int(os.environ.get('SLEEP_INTERVAL_MINUTES', '10'))
