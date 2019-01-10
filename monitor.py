@@ -3,20 +3,12 @@ import datadog
 import datetime
 import os
 import time
+from api_config.py import api
 
-ALOOMA_USERNAME = os.environ.get('ALOOMA_USERNAME')
-ALOOMA_PASSWORD = os.environ.get('ALOOMA_PASSWORD')
-ALOOMA_ACCOUNT_NAME = os.environ.get('ALOOMA_ACCOUNT_NAME')
 DATADOG_API_KEY = os.environ.get('DATADOG_API_KEY')
 MINUTES_SLEEP = int(os.environ.get('SLEEP_INTERVAL_MINUTES', '10'))
 SECONDS_SLEEP = MINUTES_SLEEP * 60
 
-
-api = alooma.Client(
-    username=ALOOMA_USERNAME,
-    password=ALOOMA_PASSWORD,
-    account_name=ALOOMA_ACCOUNT_NAME
-)
 
 datadog.initialize(api_key=DATADOG_API_KEY)
 
@@ -103,5 +95,5 @@ if __name__ == '__main__':
         except Exception as e:
             print e
 
-        print "Sleeping for {}m".format(MINUTES_SLEEP)
+        print "Monitor process sleeping for {}m".format(MINUTES_SLEEP)
         time.sleep(SECONDS_SLEEP)
