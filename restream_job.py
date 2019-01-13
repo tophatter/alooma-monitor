@@ -1,5 +1,5 @@
-from os import environ
-from requests import exceptions
+import os
+import requests
 from time import sleep
 from api_config import api
 
