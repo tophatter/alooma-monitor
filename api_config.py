@@ -8,5 +8,6 @@ ALOOMA_ACCOUNT_NAME = os.environ.get('ALOOMA_ACCOUNT_NAME')
 api = alooma.Client(
     username=ALOOMA_USERNAME,
     password=ALOOMA_PASSWORD,
-    account_name=ALOOMA_ACCOUNT_NAME
+    account_name=ALOOMA_ACCOUNT_NAME,
+    timeout=900
 )
