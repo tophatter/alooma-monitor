@@ -2,7 +2,7 @@ from os import environ
 from requests import exceptions
 from api_config import api
 
-MAX_RETRIES = os.environ.get('RESTREAM_MAX_RETRIES', 10)
+MAX_RETRIES = os.environ.get('RESTREAM_MAX_RETRIES', 3)
 
 if __name__ == '__main__':
     print "Restreaming alooma queue."
