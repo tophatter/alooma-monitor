@@ -1,5 +1,4 @@
 import os
-import requests
 from time import sleep
 from api_config import api
 
@@ -11,12 +10,10 @@ if __name__ == '__main__':
         try:
             api.start_restream()
             print "Successfully restreamed alooma queue."
-        except requests.exceptions.Timeout as e:
+        except Exception as e:
             print e
             print "Retrying..."
             sleep(5)
             continue
-        except Exception as e:
-            print e
         else:
             break
